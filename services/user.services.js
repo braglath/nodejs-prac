@@ -20,7 +20,7 @@ async function login({ name, password }, callback) {
     return callback({ message: "invalid username/password" }, null);
   if (password == null || password.length <= 0)
     return callback({ message: "Invalid password" }, null);
-  if (bcryptjs.compareSync(password, user.password))
+  if (!bcryptjs.compareSync(password, user.password))
     return callback({ message: "Invalid username/password" }, null);
   const token = auth.generateToken(name);
   user.token = token;

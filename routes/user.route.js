@@ -3,6 +3,7 @@ const req = require("express/lib/request");
 const router = express.Router();
 
 const userController = require("../controllers/user.controller");
+const auth = require("../middlewares/auth");
 
 router.get("/", (req, res) => {
   res.render("loginorregister");
@@ -19,5 +20,7 @@ router.get("/register", (req, res) => {
 router.get("/login/details", userController.login);
 
 router.get("/register/details", userController.register);
+
+router.get("/checktoken", auth.authenticateToken);
 
 module.exports = router;

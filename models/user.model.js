@@ -6,7 +6,7 @@ const userSchema = new Schema({
   token: {
     type: String,
     required: false,
-    default: "",
+    default: "Login to generate token",
   },
   name: {
     type: String,
