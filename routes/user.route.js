@@ -16,13 +16,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.get("/login/details", (req, res) => {
-  const { username, password } = req.query;
-  res.json({
-    name: username,
-    password: password,
-  });
-});
+router.get("/login/details", userController.login);
 
 router.get("/register/details", userController.register);
 

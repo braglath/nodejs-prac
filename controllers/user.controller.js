@@ -18,3 +18,15 @@ exports.register = (req, res, next) => {
     });
   });
 };
+
+exports.login = (req, res, next) => {
+  const { name, password } = req.query;
+  //! validate both above values and pass it to next as error for global error handling
+  services.login({ name, password }, (error, result) => {
+    if (error) return next(error);
+    return res.status(200).send({
+      message: "Success",
+      data: result,
+    });
+  });
+};

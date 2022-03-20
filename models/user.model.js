@@ -3,6 +3,11 @@ const { Schema } = mongoose;
 const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = new Schema({
+  token: {
+    type: String,
+    required: false,
+    default: "",
+  },
   name: {
     type: String,
     required: true,
@@ -27,10 +32,9 @@ const userSchema = new Schema({
 
 userSchema.set("toJSON", {
   transform: (document, data) => {
-    data.id = data.__id;
     delete data._v;
-    // delete data.password;
-    // delete data.__id;
+    delete data.password;
+    delete data._id;
   },
 });
 
